@@ -1,0 +1,12 @@
+silbato.iml
+target
+logs
+psd
+hs_err_pid*
+.idea
+.DS_Store
+.mtj.tmp/
+*.class
+*.jar
+*.war
+*.ear
