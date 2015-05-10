@@ -12,7 +12,7 @@
 
     <form class="form-signin" th:action="@{/login}" method="post">
         <div class="form-signin-heading">
-            <img src="images/logo.png" />
+            <img src="images/logo.png" class="login_logo" />
             <p class="bg-danger text-info" th:if="${param.error}">
                 Invalid username and password.
             </p>
@@ -27,6 +27,8 @@
         </label>
         <button class="btn btn-primary" type="submit">Sign in</button>
     </form>
+
+    <p class="text-center"><a href="http://www.balerocms.com">BaleroCMS Software v2.</a></p>
 
 </div> <!-- /container -->
 

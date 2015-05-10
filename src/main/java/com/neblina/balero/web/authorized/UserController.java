@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 
+    @RequestMapping( value = {"", "/"} )
+    public String rootIndex() {
+        return "redirect:/user/dashboard";
+    }
+
     @Secured("ROLE_USER")
     @RequestMapping("/dashboard")
     public String dashboardAdmin() {

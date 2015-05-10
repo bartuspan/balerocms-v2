@@ -50,6 +50,10 @@ body {
     margin-bottom: 15px;
     padding: 7px 9px;
 }
+.login_logo {
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
 .bg-danger {
     margin: 10px;
     padding: 10px;

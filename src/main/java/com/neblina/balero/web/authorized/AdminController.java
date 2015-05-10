@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminController {
 
+    @RequestMapping( value = {"", "/"} )
+    public String rootIndex() {
+        return "redirect:/admin/dashboard";
+    }
+
     @Secured("ROLE_ADMIN")
     //@PreAuthorize("true")
     @RequestMapping("/dashboard")
