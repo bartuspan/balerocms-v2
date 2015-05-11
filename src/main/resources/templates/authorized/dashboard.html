@@ -65,16 +65,37 @@
 
 <div class="container">
 
-    <!-- Main component for a primary marketing message or call to action -->
-    <div class="box-title">
-        <b th:text="#{dashboard-title}"> Dashboard Panel</b>
-        <span class="label label-custom pull-right"><b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></span>
-    </div>
-    <div class="box-content">
-        <p>Content</p>
+    <div class="alert alert-custom" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Enter a valid email address
     </div>
 
-    <p class="text-right"><a href="http://www.balerocms.com">BaleroCMS Software v2.</a></p>
+    <!-- Main component for a primary marketing message or call to action -->
+
+    <div class="box-content">
+        <span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true"></span>
+        <b th:text="#{dashboard-title}">Dashboard Panel</b>
+            <span class="label label-custom pull-right"><b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></span>
+        <hr />
+        <div class="row box-text">
+            <div class="col-md-4">
+                <a href="#">Link 1</a>
+                <br />
+                <a href="#">Link 2</a>
+                <br />
+                <a href="#">Link 3</a>
+            </div>
+            <div class="col-md-4">
+                <a href="#">Link 4</a>
+            </div>
+            <div class="col-md-4">
+                <a href="#">Link 5</a>
+            </div>
+        </div>
+    </div>
+
+    <p class="text-center"><a href="http://www.balerocms.com"><img src="/images/dashboard_logo.png" /></a></p>
 
 </div> <!-- /container -->
 
