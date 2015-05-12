@@ -12,8 +12,8 @@
     },
     "Loggers": {
       "Logger": {
-        "name": "com.neblina.silbato",
-        "level": "trace",
+        "name": "com.neblina.balero",
+        "level": "debug",
         "additivity": "false",
         "AppenderRef": {
           "ref": "Console"
