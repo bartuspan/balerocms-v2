@@ -1,9 +1,11 @@
+![BaleroCMS v2](images/logo.png)
+
 COMPILING
 =========
 
 To compile this source, use:
 
-    $ pandoc -o target.pdf source.md
+    $ pandoc -o documentation.pdf source.md
     
 Note: Require pandoc software.
 
