@@ -10,27 +10,33 @@ Note: Require pandoc software.
 DOCUMENTATION
 =============
 
-Welcome to Balero CMS v2.
+### Welcome to Balero CMS v2.
 
     Running:
     $ mvn test
     
-Development Deploy:
+### Development Deploy:
 
     For testing, development and demo purposes. (H2 Memory-RAM Database)
     $ mvn spring-boot:run
     
-Production Deploy:
+### Production Deploy:
 
     For live portals and production (MySQL) with resource minification (HTML/CSS/JS).
     $ mvn -Pprod spring-boot:run
     Open http://localhost:8080/
 
-About this project
+### i18n
+
+To change your language, set param in the URL: lang=CODE param.
+
+Example: **http://localhost:8080/?lang=es**
+
+### About this project
 
 Balero CMS v2 is a Lightweight and Clean Full Stack, Portal, CMS. it uses Java Back-End for MVC Controllers and AngularJS Front-End for the API REST Services.
 
-Frameworks and Toolchains: 
+### Frameworks and Toolchains: 
 
 * Spring Boot
 * Spring MVC

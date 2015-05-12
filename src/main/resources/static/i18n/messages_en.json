@@ -1,5 +1,6 @@
 {
   "debug-title": "Welcome JSON",
-  "dashboard-title" : "Dashboard Panel",
-  "login-remember": "Remember me"
+  "dashboard-title": "Dashboard Panel",
+  "login-remember": "Remember me",
+  "dashboard-settings": "Global Settings"
 }
