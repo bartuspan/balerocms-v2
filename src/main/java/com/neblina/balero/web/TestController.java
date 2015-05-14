@@ -29,9 +29,8 @@ public class TestController {
     @ResponseBody
     @Transactional(readOnly = true)
     public String helloLog() {
-        System.out.println(System.getProperty("user.dir"));
-
-        log.debug("Hello world - debug log");
+        String userDir = System.getProperty("user.dir");
+        log.debug(userDir + " - debug log");
         log.info("Hello world - info log");
         log.warn("Hello world - warn log");
         log.error("Hello world - error log");

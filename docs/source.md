@@ -34,6 +34,11 @@ To change your language, set param in the URL: lang=CODE param.
 
 Example: **http://localhost:8080/?lang=es**
 
+### Configuring E-Mail Newsletter (SMTP Client)
+
+Edit **application.yml** under resources folder, set your credentials
+for you email account.
+
 ### About this project
 
 Balero CMS v2 is a Lightweight and Clean Full Stack, Portal, CMS. it uses Java Back-End for MVC Controllers and AngularJS Front-End for the API REST Services.
