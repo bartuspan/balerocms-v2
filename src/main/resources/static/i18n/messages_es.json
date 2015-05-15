@@ -2,5 +2,6 @@
   "debug-title": "Welcome JSON",
   "dashboard-title" : "Dashboard Panel",
   "login-remember": "Recordar",
-  "dashboard-settings": "Configuración Global"
+  "dashboard-settings": "Configuración Global",
+  "language-settings": "Lenguaje De Sistema"
 }

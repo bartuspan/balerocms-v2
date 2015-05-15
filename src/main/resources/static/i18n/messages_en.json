@@ -2,5 +2,6 @@
   "debug-title": "Welcome JSON",
   "dashboard-title": "Dashboard Panel",
   "login-remember": "Remember me",
-  "dashboard-settings": "Global Settings"
+  "dashboard-settings": "Global Settings",
+  "language-settings": "System Language"
 }

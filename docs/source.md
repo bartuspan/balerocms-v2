@@ -41,7 +41,8 @@ for you email account.
 
 ### About this project
 
-Balero CMS v2 is a Lightweight and Clean Full Stack, Portal, CMS. it uses Java Back-End for MVC Controllers and AngularJS Front-End for the API REST Services.
+In most cases, Enterprise applications are heavy and very slow. Balero CMS v2
+is a Lightweight, Clean and Ultra-Fast, Full Stack, Portal, CMS. it uses Java Back-End for MVC Controllers and AngularJS Front-End for the API REST Services.
 
 ### Frameworks and Toolchains: 
 
