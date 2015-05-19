@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -42,9 +43,9 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     @Autowired
     private Environment env;
 
-    @Autowired
-    public void callAssetPipeline() {
-        log.debug("Running Balero CMS Resource Compiler...");
+    @Bean
+    @Profile("prod")
+    public AssetPipeline compile() {
         AssetPipeline asset = new AssetPipeline();
         asset.compress("templates/index.html");
         asset.compress("templates/error.html");
@@ -52,6 +53,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
         asset.compress("templates/authorized/fragments/header.html");
         asset.compress("templates/authorized/fragments/navbar.html");
         asset.compress("templates/authorized/fragments/footer.html");
+        return asset;
     }
 
     @Override

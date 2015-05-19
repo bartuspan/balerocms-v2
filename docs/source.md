@@ -1,38 +1,35 @@
 ![BaleroCMS v2](images/logo.png)
 
-COMPILING DOCUMENTATION
-=======================
-
-To compile this source, use:
-
-    $ pandoc -o documentation.pdf source.md
-    
-Note: Require pandoc software.
-
 SOFTWARE DOCUMENTATION
 ======================
 
 ### System Requirements
 
 * Java 8
-* Maven
+* Apache Maven (3.2.5 or Higher)
+* MySQL (5 or Higher; Only for production mode)
 
 ### Welcome to Balero CMS v2.
 
-    Running:
+Running:
+
     $ mvn test
     
 ### Development Deploy:
 
-    For testing, development and demo purposes. (H2 Memory-RAM Database)
+For testing, development and demo purposes. (H2 Memory-RAM Database)
+
     $ mvn spring-boot:run
     
 ### Production Deploy:
 
-    For live portals and production (MySQL) with resource minification (HTML/CSS/JS).
-    Create a MySQL Database called 'balero_v2'.
+For live portals and production (MySQL) with resource minification (HTML/CSS/JS).
+First you need a MySQL Database called 'balero_v2'.
+
     $ mvn -Pprod spring-boot:run
-    Note: Make sure your MySQL Server is running on port 3306.
+    
+Note: Make sure your MySQL Server is running on port 3306.
+
     telnet localhost 3306
     
 Open http://localhost:8080/ in your favourite browser.
@@ -52,6 +49,9 @@ for you email account.
 
 In most cases, Enterprise applications are heavy and very slow. Balero CMS v2
 is a Lightweight, Clean and Ultra-Fast, Full Stack, Portal, CMS. it uses Java Back-End for MVC Controllers and AngularJS Front-End for the API REST Services.
+
+NOTES
+=====
 
 ### Frameworks and Toolchains used in this software: 
 
@@ -82,6 +82,15 @@ IoT Support on v2
 
 * Arduino
 * Raspberry Pi
+
+COMPILING DOCUMENTATION
+=======================
+
+To compile this source, use:
+
+    $ pandoc -o documentation.pdf source.md
+    
+Note: Require pandoc software.
 
 Support or Contact
 

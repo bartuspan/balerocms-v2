@@ -9,14 +9,29 @@
 package com.neblina.balero.util;
 
 import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
+import com.neblina.balero.web.TestController;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 
+@Configuration
 @Profile("prod")
 public class AssetPipeline {
 
+    private static final Logger log = LogManager.getLogger(TestController.class.getName());
+
+    public AssetPipeline() {
+        log.debug("Running Balero CMS Resource Compiler...");
+    }
+
     public void compress(String file) {
+        log.debug("Compiling Resource... " + file);
         String html = "", sCurrentLine;
         try {
             BufferedReader input = new BufferedReader(new FileReader(multiPlatformResourcesPath(file)));
