@@ -10,8 +10,8 @@ body {
     background: #fcfcfc;
 }
 .dashboard_logo {
-    margin-top: -3px;
-    margin-left: -35px;
+    margin-top: -5px;
+    margin-left: -55px;
 }
 .navbar-default {
     background-color: #fff;
@@ -76,6 +76,14 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#05abe0',GradientType=0 ); /* IE6-9 */
 
 }
-@media (max-width: 767px) {
+/** Tablet **/
+@media(max-width:1199px) {
 
+}
+/** Mobile **/
+@media(max-width:767px) {
+    .dashboard_logo {
+        margin-top: -5px;
+        margin-left: 0px;
+    }
 }
