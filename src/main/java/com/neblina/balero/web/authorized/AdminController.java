@@ -1,5 +1,5 @@
 /**
- * Silbato Project: Proyecto 100% Mexicano de código libre.
+ * Balero CMS v2 Project: Proyecto 100% Mexicano de código libre.
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
@@ -24,8 +24,14 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     //@PreAuthorize("true")
     @RequestMapping("/dashboard")
-    public String dashboardAdmin() {
+    public String dashboardIndex() {
         return "authorized/dashboard";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("/languages")
+    public String dashboardAdmin() {
+        return "authorized/languages";
     }
 
 }
