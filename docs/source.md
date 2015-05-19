@@ -1,7 +1,7 @@
 ![BaleroCMS v2](images/logo.png)
 
-COMPILING
-=========
+COMPILING DOCUMENTATION
+=======================
 
 To compile this source, use:
 
@@ -9,8 +9,13 @@ To compile this source, use:
     
 Note: Require pandoc software.
 
-DOCUMENTATION
-=============
+SOFTWARE DOCUMENTATION
+======================
+
+### System Requirements
+
+* Java 8
+* Maven
 
 ### Welcome to Balero CMS v2.
 
@@ -25,8 +30,12 @@ DOCUMENTATION
 ### Production Deploy:
 
     For live portals and production (MySQL) with resource minification (HTML/CSS/JS).
+    Create a MySQL Database called 'balero_v2'.
     $ mvn -Pprod spring-boot:run
-    Open http://localhost:8080/
+    Note: Make sure your MySQL Server is running on port 3306.
+    telnet localhost 3306
+    
+Open http://localhost:8080/ in your favourite browser.
 
 ### i18n
 
@@ -44,7 +53,7 @@ for you email account.
 In most cases, Enterprise applications are heavy and very slow. Balero CMS v2
 is a Lightweight, Clean and Ultra-Fast, Full Stack, Portal, CMS. it uses Java Back-End for MVC Controllers and AngularJS Front-End for the API REST Services.
 
-### Frameworks and Toolchains: 
+### Frameworks and Toolchains used in this software: 
 
 * Spring Boot
 * Spring MVC
