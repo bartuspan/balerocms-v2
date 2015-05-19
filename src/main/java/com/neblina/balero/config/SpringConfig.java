@@ -49,7 +49,9 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
         asset.compress("templates/index.html");
         asset.compress("templates/error.html");
         asset.compress("templates/login.html");
-        asset.compress("templates/authorized/dashboard.html");
+        asset.compress("templates/authorized/fragments/header.html");
+        asset.compress("templates/authorized/fragments/navbar.html");
+        asset.compress("templates/authorized/fragments/footer.html");
     }
 
     @Override
