@@ -1,5 +1,5 @@
 /**
- * Silbato Project: Proyecto 100% Mexicano de código libre.
+ * Balero CMS v2 Project: Proyecto 100% Mexicano de código libre.
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
@@ -10,12 +10,13 @@ package com.neblina.balero.config;
 
 import com.neblina.balero.util.AssetPipeline;
 import com.neblina.balero.util.ResourceBundleMessageSource;
-
+import com.neblina.balero.web.TestController;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -25,7 +26,6 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import java.util.Locale;
@@ -34,14 +34,17 @@ import java.util.Properties;
 @Configuration
 public class SpringConfig extends WebMvcConfigurerAdapter {
 
+    private static final Logger log = LogManager.getLogger(TestController.class.getName());
+
     /**
      * Environment Variables (application.properties)
      */
     @Autowired
     private Environment env;
 
-    @Profile("prod")
+    @Autowired
     public void callAssetPipeline() {
+        log.debug("Running Balero CMS Resource Compiler...");
         AssetPipeline asset = new AssetPipeline();
         asset.compress("templates/index.html");
         asset.compress("templates/error.html");
