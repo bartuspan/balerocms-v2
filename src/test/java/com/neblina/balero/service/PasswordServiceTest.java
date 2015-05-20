@@ -22,8 +22,8 @@ public class PasswordServiceTest extends TestCase {
     @Test
     public void generatePassword() throws Exception {
         try {
-            System.out.println("Generando password SHA1...");
-            System.out.println(PasswordService.getInstance().encrypt("password"));
+            System.out.println("Generando password SHA1 para admin...");
+            System.out.println(PasswordService.getInstance().encrypt("admin"));
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
