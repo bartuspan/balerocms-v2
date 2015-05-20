@@ -53,7 +53,7 @@ is a Lightweight, Clean and Ultra-Fast, Full Stack, Portal, CMS. it uses Java Ba
 NOTES
 =====
 
-### Frameworks and Toolchains used in this software: 
+### Frameworks, Features And Toolchains in this software: 
 
 * Spring Boot
 * Spring MVC
@@ -76,6 +76,7 @@ NOTES
 * User / Admin Dashboard
 * UX/Responsive Email Newsletter
 * Hot Swap
+* Spring Security Password Hash Encryption / Protection
 
 IoT Support on v2
 =================
