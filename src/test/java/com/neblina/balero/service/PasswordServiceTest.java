@@ -5,11 +5,11 @@
 package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
-import com.neblina.balero.util.PasswordService;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,12 +21,12 @@ public class PasswordServiceTest extends TestCase {
 
     @Test
     public void generatePassword() throws Exception {
-        try {
-            System.out.println("Generando password SHA1 para admin...");
-            System.out.println(PasswordService.getInstance().encrypt("admin"));
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+        String password = "admin";
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(password);
+
+        System.out.println("Hash for pwd admin->");
+        System.out.println(hashedPassword);
     }
 
 }
