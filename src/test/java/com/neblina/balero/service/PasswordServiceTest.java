@@ -19,14 +19,22 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
 public class PasswordServiceTest extends TestCase {
 
+    /**
+     * @author Anibal Gomez <anibalgomez@icloud.com>
+     * References:
+     * http://www.mkyong.com/spring-security/spring-security-password-hashing-example/
+     * https://github.com/spring-projects/spring-security-javaconfig/issues/113
+     */
     @Test
     public void generatePassword() throws Exception {
-        String password = "admin";
+        String adminPassword = "admin";
+        String userPassword = "user";
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(password);
+        String adminHashedPassword = passwordEncoder.encode(adminPassword);
+        String userHashedPassword = passwordEncoder.encode(userPassword);
 
-        System.out.println("Hash for pwd admin->");
-        System.out.println(hashedPassword);
+        System.out.println("Hash for pwd admin->" + adminHashedPassword);
+        System.out.println("Hash for pwd user->" + userHashedPassword);
     }
 
 }

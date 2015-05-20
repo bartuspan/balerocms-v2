@@ -1,5 +1,5 @@
 /**
- * Silbato Project: Proyecto 100% Mexicano de código libre.
+ * Balero CMS Project: Proyecto 100% Mexicano de código libre.
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
@@ -13,11 +13,13 @@ import com.neblina.balero.service.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebMvcSecurity
@@ -49,12 +51,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         Iterable<User> userList = userRepository.findAll();
         for(User user: userList) {
-            auth.inMemoryAuthentication().
-                    withUser(user.getUsername())
+            auth.inMemoryAuthentication()
+            .passwordEncoder(passwordEncoder())
+            .withUser(user.getUsername())
                     .password(user.getPassword())
                     .roles(user.getRoles());
         }
         //auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }
