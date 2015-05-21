@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
+
 @ActiveProfiles("dev")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
@@ -45,9 +46,18 @@ public class UserRepositoryTest extends TestCase {
     }
 
     @Test
-    public void createUser() {
-        userService.createUserAccount("demo", "Pepito", "Perez", "admin@localhost", "ADMIN, USER", "123456");
+    public void createNewUsernameDemoAndVerifyIfIsItExists() {
         System.out.println("Creando Usuario Demo...");
+        userService.createUserAccount("demo", "Pepito", "Perez", "demo@localhost", "ADMIN, USER", "123456");
+        List<User> users = userService.getUserByUsername("demo");
+        for(User user: users) {
+            System.out.println("array: " + users);
+        }
+        assertThat(users, contains(
+                allOf(
+                        hasProperty("username", is("demo"))
+                )
+        ));
     }
 
 }

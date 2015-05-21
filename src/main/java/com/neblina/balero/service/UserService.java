@@ -6,6 +6,8 @@ import com.neblina.balero.util.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -23,6 +25,11 @@ public class UserService {
         user.setRoles(roles);
         user.setPassword(pwd.generatePassword(password));
         userRepository.save(user);
+        return user;
+    }
+
+    public List<User> getUserByUsername(String username) {
+        List<User> user = userRepository.findOneByUsername(username);
         return user;
     }
 
