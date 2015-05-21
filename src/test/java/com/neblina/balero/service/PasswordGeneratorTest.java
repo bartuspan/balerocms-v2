@@ -5,11 +5,11 @@
 package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
+import com.neblina.balero.util.PasswordGenerator;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationContextLoader;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ActiveProfiles("dev")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
-public class PasswordServiceTest extends TestCase {
+public class PasswordGeneratorTest extends TestCase {
 
     /**
      * @author Anibal Gomez <anibalgomez@icloud.com>
@@ -26,15 +26,11 @@ public class PasswordServiceTest extends TestCase {
      * https://github.com/spring-projects/spring-security-javaconfig/issues/113
      */
     @Test
-    public void generatePassword() throws Exception {
-        String adminPassword = "admin";
-        String userPassword = "user";
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String adminHashedPassword = passwordEncoder.encode(adminPassword);
-        String userHashedPassword = passwordEncoder.encode(userPassword);
+    public void generatePassword() {
+        PasswordGenerator pwd = new PasswordGenerator();
 
-        System.out.println("Hash for pwd admin->" + adminHashedPassword);
-        System.out.println("Hash for pwd user->" + userHashedPassword);
+        System.out.println("Hash for pwd admin->" + pwd.generatePassword("admin"));
+        System.out.println("Hash for pwd user->" + pwd.generatePassword("user"));
     }
 
 }
