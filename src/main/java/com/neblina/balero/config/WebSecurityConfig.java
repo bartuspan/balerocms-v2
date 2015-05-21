@@ -47,8 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        log.debug("Setting Credentials For Users...");
         Iterable<User> userList = userRepository.findAll();
         for(User user: userList) {
             auth.inMemoryAuthentication()
@@ -57,7 +58,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .password(user.getPassword())
                     .roles(user.getRoles());
         }
-        //auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
+        //auth.inMemoryAuthentication()
+        //.withUser("user").password("user").roles("USER").and()
+        //.withUser("admin").password("password").roles("USER", "ADMIN").and()
+
     }
 
     @Bean
