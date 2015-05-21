@@ -22,7 +22,10 @@ import static org.junit.Assert.assertThat;
 public class UserRepositoryTest extends TestCase {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
 
     @Test
     public void search_TwoUserEntriesFound_ShouldReturnAListOfTwoEntries() {
@@ -39,6 +42,12 @@ public class UserRepositoryTest extends TestCase {
                 )
         ));
 
+    }
+
+    @Test
+    public void createUser() {
+        userService.createUserAccount("demo", "Pepito", "Perez", "admin@localhost", "ADMIN, USER", "123456");
+        System.out.println("Creando Usuario Demo...");
     }
 
 }
