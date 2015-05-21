@@ -8,8 +8,7 @@
 
 package com.neblina.balero.web;
 
-import com.neblina.balero.service.repository.SettingsRepository;
-import com.neblina.balero.service.impl.TemplateAttributesImpl;
+import com.neblina.balero.service.SettingsService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +22,11 @@ public class IndexController {
     private static final Logger log = LogManager.getLogger(TestController.class.getName());
 
     @Autowired
-    private SettingsRepository settingsRepository;
-
-    @Autowired
-    private TemplateAttributesImpl templateAttributesImpl;
+    private SettingsService settingsService;
 
     @RequestMapping("/")
     String home(Model model) {
-        model.addAllAttributes(templateAttributesImpl.add());
+        model.addAllAttributes(settingsService.add());
         return "index";
     }
 

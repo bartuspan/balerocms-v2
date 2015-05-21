@@ -6,7 +6,7 @@
  * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
  */
 
-package com.neblina.balero.service.impl;
+package com.neblina.balero.service;
 
 import com.neblina.balero.domain.Settings;
 import com.neblina.balero.service.repository.SettingsRepository;
@@ -21,14 +21,14 @@ import java.util.HashMap;
 import java.util.Locale;
 
 @Service
-public class TemplateAttributesImpl {
+public class SettingsService {
 
-    private static final Logger log = LogManager.getLogger(TemplateAttributesImpl.class.getName());
+    private static final Logger log = LogManager.getLogger(SettingsService.class.getName());
 
     private final SettingsRepository settingsRepository;
 
     @Autowired
-    public TemplateAttributesImpl(SettingsRepository settingsRepository) {
+    public SettingsService(SettingsRepository settingsRepository) {
         this.settingsRepository = settingsRepository;
     }
 
