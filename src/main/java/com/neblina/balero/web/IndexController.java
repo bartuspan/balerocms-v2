@@ -27,7 +27,7 @@ public class IndexController {
     @RequestMapping("/")
     String home(Model model) {
         model.addAllAttributes(settingsModel.add());
-        return "index";
+        return "silbato/index";
     }
 
 }
