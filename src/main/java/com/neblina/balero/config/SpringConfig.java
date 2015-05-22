@@ -47,12 +47,15 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     @Profile("prod")
     public AssetPipeline compile() {
         AssetPipeline asset = new AssetPipeline();
-        asset.compress("templates/index.html");
         asset.compress("templates/error.html");
         asset.compress("templates/login.html");
-        asset.compress("templates/authorized/fragments/header.html");
-        asset.compress("templates/authorized/fragments/navbar.html");
-        asset.compress("templates/authorized/fragments/footer.html");
+        asset.compress("templates/silbato/index.html");
+        asset.compress("templates/silbato/fragments/header.html");
+        asset.compress("templates/silbato/fragments/navbar.html");
+        asset.compress("templates/silbato/fragments/footer.html");
+        asset.compress("templates/silbato/fragments/header.html");
+        asset.compress("templates/silbato/fragments/navbar.html");
+        asset.compress("templates/silbato/fragments/footer.html");
         return asset;
     }
 
