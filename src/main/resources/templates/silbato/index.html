@@ -2,35 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
-<head th:include="silbato/fragments/header :: header">
+<head th:include="silbato/fragments/metas :: metas">
     <title></title>
 </head>
 
 <body>
 
 <div th:include="silbato/fragments/navbar :: navbar"></div>
+<div th:include="silbato/fragments/header :: header"></div>
 
 <!-- Content -->
 <div th:fragment="main">
-
-<!-- Header -->
-    <div class="intro-header">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message" th:utext="${titleHeader}">
-                        Title Header
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.intro-header -->
 
     <!-- Page Content -->
 
