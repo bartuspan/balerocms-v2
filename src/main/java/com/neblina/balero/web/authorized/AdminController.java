@@ -11,12 +11,13 @@ package com.neblina.balero.web.authorized;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-    @RequestMapping( value = {"", "/"} )
+    @RequestMapping(value = {"", "/"} )
     public String rootIndex() {
         return "redirect:/admin/dashboard";
     }
@@ -29,8 +30,20 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
+    @RequestMapping("/settings")
+    public String settings() {
+        return "authorized/settings";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/settings", method = RequestMethod.POST)
+    public String saveSettings() {
+        return "authorized/settings";
+    }
+
+    @Secured("ROLE_ADMIN")
     @RequestMapping("/languages")
-    public String dashboardAdmin() {
+    public String languages() {
         return "authorized/languages";
     }
 

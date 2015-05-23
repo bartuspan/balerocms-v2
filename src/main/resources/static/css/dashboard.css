@@ -13,6 +13,9 @@ body {
     margin-top: -5px;
     margin-left: -55px;
 }
+.short {
+    width: 440px;
+}
 .navbar-default {
     background-color: #fff;
     color: #000;
@@ -85,5 +88,8 @@ body {
     .dashboard_logo {
         margin-top: -5px;
         margin-left: 0px;
+    }
+    .short {
+        width: 240px;
     }
 }
