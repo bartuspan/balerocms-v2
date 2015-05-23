@@ -34,6 +34,25 @@ Note: Make sure your MySQL Server is running on port 3306.
     
 Open http://localhost:8080/ in your favourite browser.
 
+## QuickStar Guide
+
+To login to your administrator panel:
+
+http://localhost:8080/admin
+
+And login with the sample data:
+
+* admin:admin
+* user:user
+
+Note: In a live website, please delete 'user' account and change your admin password.
+
+### Updating Software
+
+Replace your old files with the new and updated files.
+
+Be sure, your db/migrations are added successfully. It will be executed automatically.
+
 ### i18n
 
 To change your language, set param in the URL: lang=CODE param.
