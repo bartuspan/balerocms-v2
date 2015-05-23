@@ -13,7 +13,7 @@ spring:
     jpa:
       show_sql: false
       hibernate:
-        ddl-auto: validate
+        ddl-auto: update
     thymeleaf:
       cache: false
     logging:
@@ -22,3 +22,7 @@ spring:
             springframework:
               web: DEBUG
           hibernate: ERROR
+
+# FLYWAY (FlywayProperties)
+flyway:
+  validateOnMigrate: false
