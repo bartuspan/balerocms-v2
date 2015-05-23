@@ -58,6 +58,8 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 
         asset.compress("templates/authorized/dashboard.html");
         asset.compress("templates/authorized/languages.html");
+        asset.compress("templates/authorized/settings.html");
+
         asset.compress("templates/authorized/fragments/metas.html");
         asset.compress("templates/authorized/fragments/navbar.html");
         asset.compress("templates/authorized/fragments/footer.html");

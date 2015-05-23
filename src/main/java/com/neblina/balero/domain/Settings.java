@@ -21,6 +21,7 @@ public class Settings {
     private String title;
     private String titleHeader;
     private String administratorEmail;
+    private String tags;
     private String footer;
 
     public Long getId() {
@@ -63,6 +64,14 @@ public class Settings {
         this.administratorEmail = administratorEmail;
     }
 
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
     public String getFooter() {
         return footer;
     }
@@ -79,6 +88,7 @@ public class Settings {
                 "title=" + this.title + "," +
                 "titleHeader=" + this.titleHeader + "," +
                 "administratorEmail=" + this.administratorEmail + "," +
+                "tags=" + this.tags + "," +
                 "footer=" + this.footer
                 + "]";
     }
