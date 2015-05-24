@@ -22,11 +22,9 @@ public class AssetPipelineTest extends TestCase {
     public void printHtmlResourceFileList() throws IOException {
         try {
             AssetPipeline resources = new AssetPipeline();
-            ArrayList<String> list = resources.getHtmlResourceFileList("templates/authorized");
-            System.out.println("The arraylist contains the following elements: "  + list);
-            for(int i = 0; i < list.size(); i++) {
-                System.out.println(list.get(i));
-            }
+            ArrayList<String> templates = resources.getHtmlResourceFileList("templates/");
+            System.out.println("The arraylist templates contains the following elements: "  + templates);
+            for(int i = 0; i < templates.size(); i++) System.out.println(templates.get(i));
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
