@@ -8,6 +8,7 @@
 
 package com.neblina.balero.web;
 
+import com.neblina.balero.domain.User;
 import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,8 +49,8 @@ public class TestController {
     @RequestMapping("/users")
     @ResponseBody
     @Transactional(readOnly = true)
-    public String helloUsers() {
-        return this.userRepository.findAll().toString();
+    public Iterable<User> helloUsers() {
+        return this.userRepository.findAll();
     }
 
 }

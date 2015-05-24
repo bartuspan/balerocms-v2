@@ -10,6 +10,7 @@ package com.neblina.balero.web.authorized;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,7 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminAPIController {
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping("/hello")
+    @RequestMapping("/message_center")
+    @ResponseBody
     String hello() {
         return "Hello Admin!";
     }
