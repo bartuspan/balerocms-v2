@@ -15,10 +15,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 
 @Configuration
 @Profile("prod")
@@ -53,6 +53,20 @@ public class AssetPipeline {
         String resource = System.getProperty("user.dir") +
                 "/src/main/resources/" + file;
         return resource.replace("\\", "/");
+    }
+
+    public ArrayList<String> getHtmlResourceFileList(String directory) throws IOException {
+        ArrayList<String> list = new ArrayList<String>();
+        Files.walk(Paths.get(multiPlatformResourcesPath(directory))).forEach(filePath -> {
+            if (Files.isRegularFile(filePath)) {
+                String file = filePath.getFileName().toString();
+                String ext = file.substring(file.lastIndexOf("."));
+                if(ext.equals(".html")) {
+                    list.add(filePath.toString());
+                }
+            }
+        });
+        return list;
     }
 
 }
