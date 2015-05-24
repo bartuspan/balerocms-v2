@@ -29,6 +29,8 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -45,25 +47,11 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     @Profile("prod")
-    public AssetPipeline compile() {
-        AssetPipeline asset = new AssetPipeline();
-        asset.compress("templates/error.html");
-        asset.compress("templates/login.html");
-
-        asset.compress("templates/silbato/index.html");
-        asset.compress("templates/silbato/fragments/metas.html");
-        asset.compress("templates/silbato/fragments/header.html");
-        asset.compress("templates/silbato/fragments/navbar.html");
-        asset.compress("templates/silbato/fragments/footer.html");
-
-        asset.compress("templates/authorized/dashboard.html");
-        asset.compress("templates/authorized/languages.html");
-        asset.compress("templates/authorized/settings.html");
-
-        asset.compress("templates/authorized/fragments/metas.html");
-        asset.compress("templates/authorized/fragments/navbar.html");
-        asset.compress("templates/authorized/fragments/footer.html");
-        return asset;
+    public AssetPipeline compile() throws IOException {
+        AssetPipeline resources = new AssetPipeline();
+        ArrayList<String> templates = resources.getHtmlResourceFileList("templates/");
+        for(int i = 0; i < templates.size(); i++) resources.compress(templates.get(i));
+        return resources;
     }
 
     @Override

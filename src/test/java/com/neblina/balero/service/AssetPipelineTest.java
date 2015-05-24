@@ -20,14 +20,10 @@ public class AssetPipelineTest extends TestCase {
 
     @Test
     public void printHtmlResourceFileList() throws IOException {
-        try {
-            AssetPipeline resources = new AssetPipeline();
-            ArrayList<String> templates = resources.getHtmlResourceFileList("templates/");
-            System.out.println("The arraylist templates contains the following elements: "  + templates);
-            for(int i = 0; i < templates.size(); i++) System.out.println(templates.get(i));
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+        AssetPipeline resources = new AssetPipeline();
+        ArrayList<String> templates = resources.getHtmlResourceFileList("templates/");
+        System.out.println("The arraylist templates contains the following elements: "  + templates);
+        for(int i = 0; i < templates.size(); i++) System.out.println(templates.get(i));
 
     }
 

@@ -1,5 +1,5 @@
 /**
- * Balero CMS v2 Project: Proyecto 100% Mexicano de código libre.
+ * Balero CMS Project: Proyecto 100% Mexicano de código libre.
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
@@ -34,13 +34,13 @@ public class AssetPipeline {
         log.debug("Compiling Resource... " + file);
         String html = "", sCurrentLine;
         try {
-            BufferedReader input = new BufferedReader(new FileReader(multiPlatformResourcesPath(file)));
+            BufferedReader input = new BufferedReader(new FileReader(file));
             while ((sCurrentLine = input.readLine()) != null) {
                 html += sCurrentLine;
             }
             HtmlCompressor compressor = new HtmlCompressor();
             String compressedHtml = compressor.compress(html);
-            FileWriter output = new FileWriter(multiPlatformResourcesPath(file));
+            FileWriter output = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(output);
             bw.write(compressedHtml);
             bw.close();
