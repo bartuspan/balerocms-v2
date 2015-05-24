@@ -3,5 +3,9 @@
   "dashboard-title": "Dashboard Panel",
   "login-remember": "Remember me",
   "dashboard-settings": "Global Settings",
-  "language-settings": "System Language"
+  "language-settings": "System Language",
+  "offline-settings": "Offline Message",
+
+  "offline-message-warning": ["We are offline, sorry =(. We will back shortly.\n",
+    "Subscribe to our newsletter to be notified."]
 }
