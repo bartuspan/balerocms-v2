@@ -8,7 +8,6 @@
 
 package com.neblina.balero.config;
 
-import com.neblina.balero.domain.User;
 import com.neblina.balero.service.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +19,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+import java.util.Properties;
 
 @Configuration
 @EnableWebMvcSecurity
@@ -47,21 +49,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
+    /**
+     * Based on:
+     * http://stackoverflow.com/questions/25869260/how-can-i-add-users-to-the-inmemoryauthentication-builder-after-it-has-been-buil
+     * @param auth
+     * @throws Exception
+     */
     @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        log.debug("Setting Credentials For Users...");
-        Iterable<User> userList = userRepository.findAll();
-        for(User user: userList) {
-            auth.inMemoryAuthentication()
-            .passwordEncoder(passwordEncoder())
-            .withUser(user.getUsername())
-                    .password(user.getPassword())
-                    .roles(user.getRoles());
-        }
-        //auth.inMemoryAuthentication()
-        //.withUser("user").password("user").roles("USER").and()
-        //.withUser("admin").password("password").roles("USER", "ADMIN").and()
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(inMemoryUserDetailsManager()).passwordEncoder(passwordEncoder());
+    }
 
+    @Bean
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+        final Properties users = new Properties();
+        users.put("user", "HASHME, ROLE_USER, enabled"); //add whatever other user you need
+        return new InMemoryUserDetailsManager(users);
     }
 
     @Bean

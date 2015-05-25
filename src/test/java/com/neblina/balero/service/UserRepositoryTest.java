@@ -48,7 +48,7 @@ public class UserRepositoryTest extends TestCase {
     @Test
     public void createNewUsernameDemoAndVerifyIfIsItExists() {
         System.out.println("Creando Usuario Demo...");
-        userService.createUserAccount("demo", "Pepito", "Perez", "demo@localhost", "ADMIN, USER", "123456");
+        userService.createUserAccount("demo", "demo", "Pepito", "Perez", "demo@localhost", "ADMIN, USER");
         List<User> users = userService.getUserByUsername("demo");
         for(User user: users) {
             System.out.println("array: " + users);
