@@ -53,7 +53,11 @@ public class UserController {
         userService.createUserAccount("demo", "123456", "Pepito", "Perez", "demo@localhost", "USER");
         //inMemoryUserDetailsManager.createUser(new User("demo", "demo", new ArrayList<GrantedAuthority>()));
         //AuthorityUtils.createAuthorityList("ROLE_USER")
-        inMemoryUserDetailsManager.createUser(new User(username, pwd.generatePassword("demo"), AuthorityUtils.createAuthorityList("ROLE_USER")));
+        try {
+            inMemoryUserDetailsManager.createUser(new User(username, pwd.generatePassword("demo"), AuthorityUtils.createAuthorityList("ROLE_USER")));
+        } catch (Exception e) {
+            log.debug("inMemoryUserDetailsManager: " + e.getMessage());
+        }
         return "redirect:/login";
     }
 
