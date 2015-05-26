@@ -6,6 +6,8 @@ import com.neblina.balero.util.PasswordGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,13 @@ import java.util.List;
 public class UserService {
 
     private static final Logger log = LogManager.getLogger(UserService.class.getName());
+
+    private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
+
+    @Autowired
+    public UserService(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
+        this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
+    }
 
     @Autowired
     private UserRepository userRepository;
@@ -29,9 +38,11 @@ public class UserService {
         user.setEmail(email);
         user.setRoles(roles);
         userRepository.save(user);
-        // login
-        //Authentication a = new UsernamePasswordAuthenticationToken("demo", user.getPassword(), AuthorityUtils.createAuthorityList("ROLE_USER"));
-        //SecurityContextHolder.getContext().setAuthentication(a);
+        inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(
+                        user.getUsername(),
+                        user.getPassword(),
+                        AuthorityUtils.createAuthorityList("ROLE_USER")
+                ));
         return user;
     }
 

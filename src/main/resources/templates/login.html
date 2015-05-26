@@ -4,8 +4,8 @@
 <head>
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
 </head>
 <body class="darker">
 
@@ -13,7 +13,7 @@
 
     <form class="form-signin" th:action="@{/login}" method="post">
         <div class="form-signin-heading">
-            <img src="images/logo.png" class="login_logo" />
+            <img src="/images/logo.png" class="login_logo" />
             <p class="bg-danger text-info" th:if="${param.error}">
                 Invalid username and password.
             </p>
