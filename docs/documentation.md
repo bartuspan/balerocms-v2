@@ -5,7 +5,7 @@ SOFTWARE DOCUMENTATION
 
 ### System Requirements
 
-* Java 8
+* Java 8 (jdk1.8.0_25)
 * Apache Maven (3.2.5 or Higher)
 * MySQL (5 or Higher; Only for production mode)
 
@@ -108,7 +108,7 @@ COMPILING DOCUMENTATION
 
 To compile this source, use:
 
-    $ pandoc -o documentation.pdf source.md
+    $ pandoc -o documentation.pdf documentation.md
     
 Note: Require pandoc software.
 

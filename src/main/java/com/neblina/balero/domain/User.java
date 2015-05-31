@@ -23,11 +23,11 @@ public class User {
     private Long id;
 
     @NotEmpty
-    @Size(min = 5, max = 30)
+    @Size(min = 4, max = 30)
     private String username;
 
     @NotEmpty
-    @Size(min = 5, max = 15)
+    @Size(min = 4)
     private String password;
 
     private String firstName;
