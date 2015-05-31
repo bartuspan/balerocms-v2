@@ -28,6 +28,7 @@ public class UserService {
 
     public void createUserAccount(String userName, String password, String firstName, String lastName,
                                   String email, String roles) {
+        log.debug("Creating user... " + userName);
         PasswordGenerator pwd = new PasswordGenerator();
         User user = new User();
         user.setUsername(userName);
