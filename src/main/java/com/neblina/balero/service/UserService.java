@@ -37,11 +37,11 @@ public class UserService {
         user.setLastName(lastName);
         user.setEmail(email);
         user.setRoles(roles);
+        userRepository.save(user);
         //inMemoryUserDetailsManager.createUser(new User("demo", "demo", new ArrayList<GrantedAuthority>()));
         //AuthorityUtils.createAuthorityList("ROLE_USER")
         //List<User> findUser = userRepository.findOneByUsername(userName);
         try {
-            userRepository.save(user);
             inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(userName, pwd.generatePassword(password), AuthorityUtils.createAuthorityList("ROLE_USER")));
         } catch (Exception e) {
             log.debug("inMemoryUserDetailsManager: " + e.getMessage());
