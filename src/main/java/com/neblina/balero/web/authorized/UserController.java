@@ -17,10 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -41,27 +43,31 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String registerForm(Model model) {
+    public String registerForm(Model model, @Valid User user, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("user", user);
+        }
         model.addAllAttributes(settingsModel.add());
         return "silbato/register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@RequestParam(value = "username", required = true) String username,
-                           @RequestParam(value = "password", required = true) String password,
-                           @RequestParam(value = "firstname", required = true) String firstname,
-                           @RequestParam(value = "lastname", required = true) String lastname,
+    public String register(Model model, @Valid User user, BindingResult bindingResult,
+                           @RequestParam(value = "username") String username,
+                           @RequestParam(value = "password") String password,
+                           @RequestParam(value = "firstname") String firstname,
+                           @RequestParam(value = "lastname") String lastname,
                            @RequestParam("email") String email) {
         log.debug("Creating user... " + username);
+        if(bindingResult.hasErrors()) {
+            return "silbato/register";
+        }
         List<User> userArray = userService.getUserByUsername("demo");
         if(userArray.isEmpty()) {
             userService.createUserAccount(username, password, firstname, lastname, email, "USER");
         }
         if(!userArray.isEmpty()) {
             log.debug("User is already exists!");
-        }
-        for(User user: userArray) {
-            log.debug("array: " + userArray);
         }
         return "redirect:/login";
     }
