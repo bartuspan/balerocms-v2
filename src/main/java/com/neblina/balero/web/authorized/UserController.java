@@ -59,13 +59,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@RequestParam("username") String username) {
+    public String register(@RequestParam(value = "username", required = true) String username,
+                           @RequestParam(value = "password", required = true) String password,
+                           @RequestParam(value = "firstname", required = true) String firstname,
+                           @RequestParam(value = "lastname", required = true) String lastname,
+                           @RequestParam("email") String email) {
         PasswordGenerator pwd = new PasswordGenerator();
-        userService.createUserAccount("demo", "123456", "Pepito", "Perez", "demo@localhost", "USER");
+        userService.createUserAccount(username, password, firstname, lastname, email, "USER");
         //inMemoryUserDetailsManager.createUser(new User("demo", "demo", new ArrayList<GrantedAuthority>()));
         //AuthorityUtils.createAuthorityList("ROLE_USER")
         try {
-            inMemoryUserDetailsManager.createUser(new User(username, pwd.generatePassword("demo"), AuthorityUtils.createAuthorityList("ROLE_USER")));
+            inMemoryUserDetailsManager.createUser(new User(username, pwd.generatePassword(password), AuthorityUtils.createAuthorityList("ROLE_USER")));
         } catch (Exception e) {
             log.debug("inMemoryUserDetailsManager: " + e.getMessage());
         }
