@@ -8,6 +8,7 @@
 
 package com.neblina.balero.domain;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
@@ -22,12 +23,18 @@ public class User {
     private Long id;
 
     @NotEmpty
-    @Size(min = 2, max = 30)
+    @Size(min = 5, max = 30)
     private String username;
 
+    @NotEmpty
+    @Size(min = 5, max = 15)
     private String password;
+
     private String firstName;
     private String lastName;
+
+    @NotEmpty
+    @Email
     private String email;
     private String roles;
 
