@@ -6,6 +6,7 @@ import com.neblina.balero.util.PasswordGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,6 @@ public class UserService {
 
     public void createUserAccount(String userName, String password, String firstName, String lastName,
                                   String email, String roles) {
-        log.debug("Creating user... " + userName);
         PasswordGenerator pwd = new PasswordGenerator();
         User user = new User();
         user.setUsername(userName);
@@ -37,9 +37,16 @@ public class UserService {
         user.setLastName(lastName);
         user.setEmail(email);
         user.setRoles(roles);
-        userRepository.save(user);
+        //inMemoryUserDetailsManager.createUser(new User("demo", "demo", new ArrayList<GrantedAuthority>()));
+        //AuthorityUtils.createAuthorityList("ROLE_USER")
+        //List<User> findUser = userRepository.findOneByUsername(userName);
+        try {
+            userRepository.save(user);
+            inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(userName, pwd.generatePassword(password), AuthorityUtils.createAuthorityList("ROLE_USER")));
+        } catch (Exception e) {
+            log.debug("inMemoryUserDetailsManager: " + e.getMessage());
+        }
     }
-
 
     public List<User> getUserByUsername(String username) {
         List<User> user = userRepository.findOneByUsername(username);

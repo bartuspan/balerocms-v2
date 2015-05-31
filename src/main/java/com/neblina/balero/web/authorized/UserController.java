@@ -8,41 +8,29 @@
 
 package com.neblina.balero.web.authorized;
 
+import com.neblina.balero.domain.User;
 import com.neblina.balero.model.SettingsModel;
 import com.neblina.balero.service.UserService;
-import com.neblina.balero.service.repository.UserRepository;
-import com.neblina.balero.util.PasswordGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
-    private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
-
-    @Autowired
-    public UserController(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
-        this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
-    }
+    private static final Logger log = LogManager.getLogger(UserController.class.getName());
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    private static final Logger log = LogManager.getLogger(UserController.class.getName());
 
     @Autowired
     private SettingsModel settingsModel;
@@ -64,14 +52,16 @@ public class UserController {
                            @RequestParam(value = "firstname", required = true) String firstname,
                            @RequestParam(value = "lastname", required = true) String lastname,
                            @RequestParam("email") String email) {
-        PasswordGenerator pwd = new PasswordGenerator();
-        userService.createUserAccount(username, password, firstname, lastname, email, "USER");
-        //inMemoryUserDetailsManager.createUser(new User("demo", "demo", new ArrayList<GrantedAuthority>()));
-        //AuthorityUtils.createAuthorityList("ROLE_USER")
-        try {
-            inMemoryUserDetailsManager.createUser(new User(username, pwd.generatePassword(password), AuthorityUtils.createAuthorityList("ROLE_USER")));
-        } catch (Exception e) {
-            log.debug("inMemoryUserDetailsManager: " + e.getMessage());
+        log.debug("Creating user... " + username);
+        List<User> userArray = userService.getUserByUsername("demo");
+        if(userArray.isEmpty()) {
+            userService.createUserAccount(username, password, firstname, lastname, email, "USER");
+        }
+        if(!userArray.isEmpty()) {
+            log.debug("User is already exists!");
+        }
+        for(User user: userArray) {
+            log.debug("array: " + userArray);
         }
         return "redirect:/login";
     }
