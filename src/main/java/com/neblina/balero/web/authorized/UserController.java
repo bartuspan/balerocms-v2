@@ -60,6 +60,7 @@ public class UserController {
                            @RequestParam("email") String email) {
         log.debug("Creating user... " + username);
         if(bindingResult.hasErrors()) {
+            model.addAllAttributes(settingsModel.add());
             return "silbato/register";
         }
         List<User> userArray = userService.getUserByUsername("demo");
