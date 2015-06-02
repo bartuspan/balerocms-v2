@@ -60,5 +60,16 @@ public class UserRepositoryTest extends TestCase {
         ));
     }
 
+    @Test
+    public void printAllRegisteredUsers() {
+        System.out.println("Getting Registered Users...");
+        List<User> remoteUsers = userService.getAllUsers();
+        int i = 0;
+        for(User user: remoteUsers) {
+            i++;
+            System.out.println("User[" + i + "] " + user.getUsername() + " : " + user.getEmail());
+        }
+    }
+
 }
 

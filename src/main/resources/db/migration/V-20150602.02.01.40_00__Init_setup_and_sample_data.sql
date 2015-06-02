@@ -19,7 +19,7 @@ CREATE TABLE SETTINGS (
 	footer varchar(255) not null
 );
 
-insert into USER (username, password, password_verify, first_name, last_name, email, roles) values ('admin', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', 'Anibal', 'Gomez', 'anibalgomez@icloud.com', 'ADMIN');
-insert into USER (username, password, password_verify, first_name, last_name, email, roles) values ('user', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', 'Jon', 'Doe', 'noreply@balerocms.com', 'USER');
+insert into USER (username, password, password_verify, first_name, last_name, email, roles) values ('admin', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', 'Anibal', 'Gomez', 'anibalgomez@icloud.com', 'ROLE_ADMIN');
+insert into USER (username, password, password_verify, first_name, last_name, email, roles) values ('user', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', 'Jon', 'Doe', 'noreply@balerocms.com', 'ROLE_USER');
 
 insert into SETTINGS (code, title, title_header, administrator_email, tags, footer) values ('en_US', 'Balerocms v2', '<h1>Welcome</h1><h3>Example Portal</h3><hr class="intro-divider" /><p>Congratulations! Installation success!</p>', 'admin@localhost', 'Business, Enterprise, Company, Etc...', '(c) 2015. Your company.');

@@ -29,6 +29,7 @@ public class UserService {
 
     public void createUserAccount(String userName, String password, String passwordVerify, String firstName, String lastName,
                                   String email, String roles) {
+        log.debug("Creating user... " + userName);
         PasswordGenerator pwd = new PasswordGenerator();
         User user = new User();
         user.setUsername(userName);
@@ -52,6 +53,11 @@ public class UserService {
     public List<User> getUserByUsername(String username) {
         List<User> user = userRepository.findOneByUsername(username);
         return user;
+    }
+
+    public List<User> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users;
     }
 
 }

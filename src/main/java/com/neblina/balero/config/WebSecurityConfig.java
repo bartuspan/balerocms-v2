@@ -8,8 +8,11 @@
 
 package com.neblina.balero.config;
 
+import com.neblina.balero.domain.User;
+import com.neblina.balero.service.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,6 +22,7 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import java.util.List;
 import java.util.Properties;
 
 @Configuration
@@ -26,6 +30,9 @@ import java.util.Properties;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final Logger log = LoggerFactory.getLogger(WebSecurityConfig.class);
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -57,8 +64,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+        log.debug("Adding Users...");
         final Properties users = new Properties();
-        users.put("user", "HASHME, ROLE_USER, enabled"); //add whatever other user you need
+        List<User> remoteUsers = userRepository.findAll();
+        for(User user: remoteUsers) {
+            users.put(user.getUsername(),
+                    user.getPassword() + ", " +
+                            user.getRoles() + ", enabled"); //add whatever other user you need
+        }
         return new InMemoryUserDetailsManager(users);
     }
 
