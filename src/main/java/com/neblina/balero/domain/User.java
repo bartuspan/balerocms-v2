@@ -30,12 +30,16 @@ public class User {
     @Size(min = 4)
     private String password;
 
+    @NotEmpty
     private String firstName;
+
+    @NotEmpty
     private String lastName;
 
     @NotEmpty
     @Email
     private String email;
+
     private String roles;
 
     public Long getId() {

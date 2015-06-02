@@ -55,8 +55,8 @@ public class UserController {
     public String register(Model model, @Valid User user, BindingResult bindingResult,
                            @RequestParam(value = "username") String username,
                            @RequestParam(value = "password") String password,
-                           @RequestParam(value = "firstname") String firstname,
-                           @RequestParam(value = "lastname") String lastname,
+                           @RequestParam(value = "firstName") String firstName,
+                           @RequestParam(value = "lastName") String lastName,
                            @RequestParam("email") String email) {
         log.debug("Creating user... " + username);
         if(bindingResult.hasErrors()) {
@@ -65,7 +65,7 @@ public class UserController {
         }
         List<User> userArray = userService.getUserByUsername("demo");
         if(userArray.isEmpty()) {
-            userService.createUserAccount(username, password, firstname, lastname, email, "USER");
+            userService.createUserAccount(username, password, firstName, lastName, email, "USER");
         }
         if(!userArray.isEmpty()) {
             log.debug("User is already exists!");
