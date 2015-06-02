@@ -55,17 +55,21 @@ public class UserController {
     public String register(Model model, @Valid User user, BindingResult bindingResult,
                            @RequestParam(value = "username") String username,
                            @RequestParam(value = "password") String password,
+                           @RequestParam(value = "passwordVerify") String passwordVerify,
                            @RequestParam(value = "firstName") String firstName,
                            @RequestParam(value = "lastName") String lastName,
                            @RequestParam("email") String email) {
         log.debug("Creating user... " + username);
+        if(!password.equals(passwordVerify)) {
+            bindingResult.rejectValue("passwordVerify", "error.passwordVerify", "Do not match.");
+        }
         if(bindingResult.hasErrors()) {
             model.addAllAttributes(settingsModel.add());
             return "silbato/register";
         }
         List<User> userArray = userService.getUserByUsername("demo");
         if(userArray.isEmpty()) {
-            userService.createUserAccount(username, password, firstName, lastName, email, "USER");
+            userService.createUserAccount(username, password, passwordVerify, firstName, lastName, email, "USER");
         }
         if(!userArray.isEmpty()) {
             log.debug("User is already exists!");

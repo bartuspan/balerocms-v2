@@ -27,12 +27,13 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void createUserAccount(String userName, String password, String firstName, String lastName,
+    public void createUserAccount(String userName, String password, String passwordVerify, String firstName, String lastName,
                                   String email, String roles) {
         PasswordGenerator pwd = new PasswordGenerator();
         User user = new User();
         user.setUsername(userName);
         user.setPassword(pwd.generatePassword(password));
+        user.setPasswordVerify(pwd.generatePassword(passwordVerify));
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);

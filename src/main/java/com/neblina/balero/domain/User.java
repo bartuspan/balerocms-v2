@@ -27,8 +27,12 @@ public class User {
     private String username;
 
     @NotEmpty
-    @Size(min = 4)
+    @Size(min = 4, max = 100)
     private String password;
+
+    @NotEmpty
+    @Size(min = 4, max = 100)
+    private String passwordVerify;
 
     @NotEmpty
     private String firstName;
@@ -64,6 +68,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswordVerify() {
+        return passwordVerify;
+    }
+
+    public void setPasswordVerify(String passwordVerify) {
+        this.passwordVerify = passwordVerify;
     }
 
     public String getFirstName() {
