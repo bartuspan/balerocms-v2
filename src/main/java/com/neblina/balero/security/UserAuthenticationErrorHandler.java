@@ -8,14 +8,19 @@
 
 package com.neblina.balero.security;
 
+import com.neblina.balero.domain.Blacklist;
+import com.neblina.balero.service.BlacklistService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.event.AuthenticationFailureBadCredentialsEvent;
 import org.springframework.stereotype.Component;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
 
 /**
  * @author Anibal Gomez
@@ -27,6 +32,9 @@ public class UserAuthenticationErrorHandler implements ApplicationListener<Authe
 
     private final Logger log = LoggerFactory.getLogger(UserAuthenticationErrorHandler.class);
 
+    @Autowired
+    private BlacklistService blacklistService;
+
     @Override
     public void onApplicationEvent(AuthenticationFailureBadCredentialsEvent event) {
         try {
@@ -35,7 +43,21 @@ public class UserAuthenticationErrorHandler implements ApplicationListener<Authe
             Object credentials = event.getAuthentication().getCredentials();
             log.warn("Failed login using USERNAME " +
                     userName + " and PASSWORD " + credentials + " from " + ip.getHostAddress());
+            blacklistService.addIpToBlacklist(ip.getHostAddress());
+
         } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Scheduled(fixedRate = 15000)
+    public void blacklistChecker() {
+        try {
+            List<Blacklist> ips = blacklistService.getAllIps();
+            for(Blacklist blacklist: ips) {
+                blacklistService.updateTimer(blacklist.getIp());
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
