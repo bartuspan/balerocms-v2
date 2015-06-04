@@ -40,10 +40,10 @@ public class BlacklistService {
     }
 
     public void deleteUserFromBlacklist(String ip) {
-        log.debug("Deleting banned ip...");
-        Blacklist user = new Blacklist();
-        user.setIp(ip);
-        blacklistRepository.delete(user);
+        log.debug("Deleting Banned IP...");
+        Blacklist blacklist = blacklistRepository.findOneByIp(ip);
+        blacklist.setIp(ip);
+        blacklistRepository.delete(blacklist);
     }
 
     public void updateTimer(String ip) {
@@ -54,8 +54,6 @@ public class BlacklistService {
                 throw new Exception("User Is Not On The Blacklist. Nothing To Do.");
             }
             if(blacklist.getTimer() <= 0) {
-                // TODO
-                // Fix iteration
                 deleteUserFromBlacklist(ip);
             }
             if(blacklist.getTimer() > 0) {
