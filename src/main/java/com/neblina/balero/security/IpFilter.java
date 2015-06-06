@@ -43,10 +43,10 @@ public class IpFilter implements Filter {
         log.debug(ip.getHostAddress() + ":" + request.getRemoteAddr());
         List<Blacklist> blacklists = blacklistRepository.findAll();
         for(Blacklist blacklist : blacklists) {
-            log.debug("IP Banned: " + blacklist.getIp());
+            log.debug("User IP: " + blacklist.getIp());
             if(ip.getHostAddress().equals(blacklist.getIp()) && blacklist.getAttemps() > 7) {
                 response.setContentType("text/html");
-                response.getWriter().println("You Has Been Banned For 15 Minutes.");
+                response.getWriter().println("You Has Been Banned For 5 Minutes.");
                 return;
             }
         }

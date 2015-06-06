@@ -50,7 +50,7 @@ public class UserAuthenticationErrorHandler implements ApplicationListener<Authe
         }
     }
 
-    @Scheduled(fixedRate = 15000)
+    @Scheduled(fixedRate = 60000)
     public void blacklistChecker() {
         try {
             List<Blacklist> ips = blacklistService.getAllIps();

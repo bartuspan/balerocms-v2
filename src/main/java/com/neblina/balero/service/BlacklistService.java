@@ -27,7 +27,7 @@ public class BlacklistService {
             blacklist.setAttemps(blacklist.getAttemps()+1);
             log.debug("Attemps: " + blacklist.getAttemps());
             if(blacklist.getAttemps() > 7) {
-                blacklist.setTimer(15 * 60);
+                blacklist.setTimer(60000 * 5);
             }
             blacklistRepository.save(blacklist);
         } catch (Exception e) {
@@ -57,7 +57,7 @@ public class BlacklistService {
                 deleteUserFromBlacklist(ip);
             }
             if(blacklist.getTimer() > 0) {
-                blacklist.setTimer(blacklist.getTimer()-60);
+                blacklist.setTimer(blacklist.getTimer()-60000);
                 log.debug(blacklist.getTimer() + " Remaining...");
                 blacklistRepository.save(blacklist);
             }
