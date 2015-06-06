@@ -1,18 +1,26 @@
 package com.neblina.balero.security;
 
+import com.neblina.balero.domain.Blacklist;
+import com.neblina.balero.service.repository.BlacklistRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.util.List;
 
 @Component
 public class IpFilter implements Filter {
 
     private final Logger log = LoggerFactory.getLogger(IpFilter.class);
+
+    @Autowired
+    private BlacklistRepository blacklistRepository;
 
     /**
      * @author Anibal Gomez <anibalgomez@icloud.com>
@@ -25,18 +33,22 @@ public class IpFilter implements Filter {
      */
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         log.debug("Loading Filter...");
+        InetAddress ip = InetAddress.getLocalHost();
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
         //response.setHeader("Access-Control-Allow-Origin", "*");
         //response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         //response.setHeader("Access-Control-Max-Age", "3600");
         //response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-        log.debug(request.getRemoteAddr());
-        if(request.getRemoteAddr().equals("0:0:0:0:0:0:0:1")) {
-            log.debug("You are banned.");
-            response.setContentType("text/html");
-            response.getWriter().println("You Has Been Banned For 15 Minutes.");
-            return;
+        log.debug(ip.getHostAddress() + ":" + request.getRemoteAddr());
+        List<Blacklist> blacklists = blacklistRepository.findAll();
+        for(Blacklist blacklist : blacklists) {
+            log.debug("IP Banned: " + blacklist.getIp());
+            if(ip.getHostAddress().equals(blacklist.getIp()) && blacklist.getAttemps() > 7) {
+                response.setContentType("text/html");
+                response.getWriter().println("You Has Been Banned For 15 Minutes.");
+                return;
+            }
         }
         chain.doFilter(req, res);
     }
