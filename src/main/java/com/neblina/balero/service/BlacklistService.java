@@ -66,7 +66,7 @@ public class BlacklistService {
             }
             if(blacklist.getTimer() > 0) {
                 blacklist.setTimer(blacklist.getTimer()-60000);
-                log.debug(blacklist.getTimer() + " Remaining...");
+                log.debug(blacklist.getIp() + " " + blacklist.getTimer() + " Remaining...");
                 blacklistRepository.save(blacklist);
             }
         } catch (Exception e) {
