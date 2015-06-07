@@ -79,6 +79,9 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#05abe0',GradientType=0 ); /* IE6-9 */
 
 }
+.title {
+    padding-left: 25px;
+}
 /** Tablet **/
 @media(max-width:1199px) {
 
