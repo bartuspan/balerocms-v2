@@ -60,10 +60,9 @@ public class Settings {
         return administratorEmail;
     }
 
-    public void setAdministrator_email(String administratorEmail) {
+    public void setAdministratorEmail(String administratorEmail) {
         this.administratorEmail = administratorEmail;
     }
-
     public String getTags() {
         return tags;
     }
