@@ -20,6 +20,12 @@ Running:
 For testing, development and demo purposes. (H2 Memory-RAM Database)
 
     $ mvn spring-boot:run
+
+If having troubles, then type:
+
+    $ mvn -Pdev spring-boot:run
+
+It will activate the development profile.
     
 ### Production Deploy:
 
