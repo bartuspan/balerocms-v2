@@ -11,19 +11,27 @@ package com.neblina.balero.web.authorized;
 import com.neblina.balero.domain.Settings;
 import com.neblina.balero.service.SettingsService;
 import com.neblina.balero.service.repository.SettingsRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
+    private static final Logger log = LogManager.getLogger(AdminController.class.getName());
+
     @Autowired
     private SettingsRepository settingsRepository;
+
+    @Autowired
+    private SettingsService settingsService;
 
     @RequestMapping(value = {"", "/"} )
     public String rootIndex() {
@@ -46,7 +54,22 @@ public class AdminController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/settings", method = RequestMethod.POST)
-    public String saveSettings() {
+    public String saveSettings(Model model,
+                               @RequestParam(value = "title") String title,
+                               @RequestParam(value = "titleHeader") String titleHeader,
+                               @RequestParam(value = "administratorEmail") String administratorEmail,
+                               @RequestParam(value = "tags") String tags,
+                               @RequestParam(value = "footer") String footer) {
+        log.debug("Saving Settings...");
+        model.addAttribute("settings", settingsRepository.findOneByCode("en_US"));
+        settingsService.saveSettings(
+                "en_US",
+                title,
+                titleHeader,
+                administratorEmail,
+                tags,
+                footer
+                );
         return "authorized/settings";
     }
 

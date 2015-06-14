@@ -38,6 +38,7 @@ public class SettingsService {
         settings.setAdministratorEmail(administratorEmail);
         settings.setTags(tags);
         settings.setFooter(footer);
+        settingsRepository.save(settings);
     }
 
 }

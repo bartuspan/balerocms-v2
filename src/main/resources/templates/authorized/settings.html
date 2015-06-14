@@ -17,7 +17,7 @@
 
         <div class="box-content">
 
-            <form class="form-horizontal" th:object="${settings}">
+            <form class="form-horizontal" method="post" th:action="@{/admin/settings}" th:object="${settings}">
                 <div class="form-group title">
                     <h4>Site Configuration</h4>
                 </div>
