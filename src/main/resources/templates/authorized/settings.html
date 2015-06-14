@@ -17,40 +17,38 @@
 
         <div class="box-content">
 
-            <form class="form-horizontal">
+            <form class="form-horizontal" th:object="${settings}">
                 <div class="form-group title">
                     <h4>Site Configuration</h4>
                 </div>
                 <div class="form-group">
                     <label for="title" class="col-sm-2 control-label">Title</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control short" id="title" />
+                        <input type="text" name="title" class="form-control short" id="title" th:field="*{title}" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="titleHeader" class="col-sm-2 control-label">Header Title or Slogan</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control short" id="titleHeader" />
+                        <input type="text" name="title" class="form-control short" id="titleHeader" th:field="*{titleHeader}" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="administratorEmail" class="col-sm-2 control-label">Administrator Email</label>
                     <div class="col-sm-10">
-                        <input type="text" name="administratorEmail" class="form-control short" id="administratorEmail" />
+                        <input type="text" name="administratorEmail" class="form-control short" id="administratorEmail" th:field="*{administratorEmail}" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="tags" class="col-sm-2 control-label">Site Tags</label>
                     <div class="col-sm-10">
-                        <input type="text" name="tags" class="form-control short" id="tags" />
+                        <input type="text" name="tags" class="form-control short" id="tags" th:field="*{tags}" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="footer" class="col-sm-2 control-label">Footer</label>
                     <div class="col-sm-10">
-                        <textarea name="footer" class="form-control short" rows="5" id="footer">
-
-                        </textarea>
+                        <textarea name="footer" class="form-control short" rows="5" id="footer" th:field="*{footer}"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
