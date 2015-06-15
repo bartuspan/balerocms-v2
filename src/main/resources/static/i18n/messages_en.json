@@ -6,6 +6,8 @@
   "language-settings": "System Language",
   "offline-settings": "Offline Message",
 
+  "dashboard-settings-saved": "Successfully saved!",
+
   "offline-message-warning": ["We are offline, sorry =(. We will back shortly.\n",
     "Subscribe to our newsletter to be notified."]
 }

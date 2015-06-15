@@ -61,6 +61,7 @@ public class AdminController {
                                @RequestParam(value = "tags") String tags,
                                @RequestParam(value = "footer") String footer) {
         log.debug("Saving Settings...");
+        model.addAttribute("success", 1);
         model.addAttribute("settings", settingsRepository.findOneByCode("en_US"));
         settingsService.saveSettings(
                 "en_US",
