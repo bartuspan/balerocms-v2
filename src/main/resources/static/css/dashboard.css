@@ -1,6 +1,6 @@
 .active-link {
     font-weight: bold;
-    text-decoration: underline;
+    text-decoration: none;
 }
 body {
     width: 100%;
@@ -27,8 +27,8 @@ body {
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: #ccc;
-    text-decoration: underline;
+    color: #5081af;
+    text-decoration: none;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
