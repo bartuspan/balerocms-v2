@@ -12,15 +12,12 @@
 
     <title th:text="#{dashboard-title}">Dashboard</title>
 
-    <!-- include jquery -->
     <script src="/js/jquery-1.9.1.min.js"></script>
 
-    <!-- include libraries BS3 -->
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" />
 
-    <!-- include summernote -->
     <link rel="stylesheet" href="/vendors/summernote/summernote.css" />
     <script type="text/javascript" src="/vendors/summernote/summernote.js"></script>
 
@@ -29,17 +26,9 @@
             $('.summernote').summernote({
                 height: 200
             });
-
-            /**
-            $('form').on('submit', function (e) {
-                e.preventDefault();
-                alert($('.summernote').code());
-            });
-             **/
         });
     </script>
 
-    <!-- Dashboard css-->
     <link href="/css/dashboard.css" rel="stylesheet" />
 
     <!--[if lt IE 9]>
