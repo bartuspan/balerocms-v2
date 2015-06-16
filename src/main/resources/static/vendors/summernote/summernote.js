@@ -2343,7 +2343,7 @@
         ['table', ['table']],
         ['insert', ['link', 'picture', 'hr']],
         ['view', ['fullscreen', 'codeview']],
-        ['help', ['help']]
+        //['help', ['help']]
       ],
 
       plugin : { },
