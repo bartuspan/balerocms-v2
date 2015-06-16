@@ -11,7 +11,15 @@ SOFTWARE DOCUMENTATION
 
 ### Welcome to Balero CMS v2.
 
-Running:
+Cloning project:
+
+    $ git clone https://github.com/neblina-software/balerocms-v2.git
+
+Navigate to root folder:
+
+    $ cd balerocms-v2
+
+And then, run:
 
     $ mvn test
     
