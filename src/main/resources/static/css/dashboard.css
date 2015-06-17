@@ -27,6 +27,9 @@ body {
     background: linear-gradient(to bottom, #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
 }
+.container hr {
+    width: 95%;
+}
 .dashboard_logo {
     margin-top: -5px;
     margin-left: -55px;
@@ -105,7 +108,7 @@ body {
 
 }
 .title {
-    padding-left: 25px;
+    padding-left: 45px;
 }
 /** Tablet **/
 @media(max-width:1199px) {
