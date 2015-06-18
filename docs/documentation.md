@@ -98,11 +98,14 @@ NOTES
 * Spring MVC
 * Spring Security
 * AngularJS
-* Bootstrap
+* Bootstrap / Font-Awesome
 * Flyway DB
 * Hibernate JPA
 * Asset Pipeline
-* Features and Plugins: 
+
+
+#### Features and Plugins: 
+
 * Spring MVC Controllers
 * AngularJS Asynchronous Spring REST Controllers
 * DB Migrations
