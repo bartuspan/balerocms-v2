@@ -78,6 +78,12 @@ Example: **http://localhost:8080/?lang=es**
 Edit **application.yml** under resources folder, set your credentials
 for you email account.
 
+### Database Chengelog Timestamps
+
+Convention:
+
+V-YEAR-MONTH-DAY.HOUR-MINUTES-SECONDS__Message.sql
+
 ### About this project
 
 In most cases, Enterprise applications are heavy and very slow. Balero CMS v2
